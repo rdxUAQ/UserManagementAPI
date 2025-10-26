@@ -1,0 +1,32 @@
+[
+    {
+        "id": "2f4e7a9b-1c5d-4d2a-8e34-3a9f6b2c1d0e",
+        "email": "alice.smith@techhive.com",
+        "password": "X7v#9kLp2!aQ",
+        "fullname": "Alice Smith"
+    },
+    {
+        "id": "a3b9f6e2-7d4c-4b1a-9f3e-2b8c5d7a0f1e",
+        "email": "benjamin.johnson@techhive.com",
+        "password": "Gh8@rT5mZ2q!",
+        "fullname": "Benjamin Johnson"
+    },
+    {
+        "id": "9e1b3f6c-2a4d-4c8f-8b2e-4f7a9c1b3d5e",
+        "email": "carla.martinez@techhive.com",
+        "password": "P@ssW0rd!2025",
+        "fullname": "Carla Martinez"
+    },
+    {
+        "id": "c6d7e8f9-0a1b-4c2d-8e3f-5a6b7c8d9e0f",
+        "email": "david.lee@techhive.com",
+        "password": "L3e$T9p#x7Rw",
+        "fullname": "David Lee"
+    },
+    {
+        "id": "0f1e2d3c-4b5a-4d6c-9b8a-7c6d5e4f3a2b",
+        "email": "emma.wilson@techhive.com",
+        "password": "Emm@2025!Zk8",
+        "fullname": "Emma Wilson"
+    }
+]
