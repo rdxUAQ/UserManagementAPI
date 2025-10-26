@@ -53,9 +53,9 @@ namespace UserManagementAPI
             var app = builder.Build();
 
             //Middleware
-
-            //
             app.UseMiddleware<RequestCountMiddleware>();
+            app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+            app.UseMiddleware<RequestResponseLoggingMiddleware>();
             
             //TODO: app swagger
 

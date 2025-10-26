@@ -6,6 +6,11 @@ namespace UserManagementAPI.Const
     public class ResponseErrors{
 
         //SERVER ERRORS
+        public static BaseError ServerInternalError => new BaseError
+        {
+            Code = "SRV500",
+            Description = "An internal server error occurred"
+        };
         public static BaseError ServerDataSaveError = new BaseError { Code = "SRVR001", Description = "Internal data error saving" };
 
         //USER ERRORS
