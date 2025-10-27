@@ -4,6 +4,7 @@ using UserManagementAPI.Api.Interfaces;
 using UserManagementAPI.Api.Middleware;
 using Serilog;
 using DotNetEnv;
+using System.Text.Json.Serialization;
 
 namespace UserManagementAPI
 {
@@ -33,7 +34,15 @@ namespace UserManagementAPI
             builder.Services.AddSingleton<IUserService, UserService>();
             builder.Services.AddSingleton<EndpointUsageTracker>();
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.AllowTrailingCommas = false;
+                options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        
+                 options.JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow;
+    
+                
+            });
             builder.Services.AddAuthentication();
             builder.Services.AddAuthorization();
 
@@ -59,11 +68,15 @@ namespace UserManagementAPI
 
             var app = builder.Build();
 
-            //Middleware
+            ///////////Middleware////////////
             app.UseMiddleware<RequestCountMiddleware>();
+            //error handling
             app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
-            app.UseMiddleware<RequestResponseLoggingMiddleware>();
+            //authentication
             app.UseMiddleware<ApiKeyAuthenticationMiddleware>();
+            //logging Logging middleware l
+            app.UseMiddleware<RequestResponseLoggingMiddleware>();
+            
             
             //TODO: app swagger
 

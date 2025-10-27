@@ -49,13 +49,10 @@ namespace UserManagementAPI.Api.Controllers
         {
             // basic model validation
             if (!ModelState.IsValid){
-                return BadRequest(new BaseResponse<bool> { Data = false, Error = ResponseErrors.UserInvalidAttribs });
+                    return BadRequest(new BaseResponse<bool> { Data = false, Error = ResponseErrors.UserInvalidAttribs });
                 }
 
-            // reject extra JSON properties
-            if (dto.ExtensionData != null && dto.ExtensionData.Count > 0){
-                return BadRequest(new BaseResponse<bool> { Data = false, Error = ResponseErrors.UserDataExist });
-               }
+            
 
             var ok = await _userService.CreateNewUser(dto);
             if (!ok) return StatusCode(500, new BaseResponse<bool> { Data = false, Error = ResponseErrors.ServerDataSaveError });
@@ -72,9 +69,7 @@ namespace UserManagementAPI.Api.Controllers
             if (!ModelState.IsValid)
                 return ValidationProblem(ModelState);
 
-            if (dto.ExtensionData != null && dto.ExtensionData.Count > 0)
-                return BadRequest(new BaseResponse<bool> { Data = false, Error = ResponseErrors.UserDataExist });
-
+           
             var ok = await _userService.UpdateUserById(id, dto);
             if (!ok) return NotFound(new BaseResponse<bool> { Data = false, Error = new Base.BaseError { Code = "USR404", Description = "User not found" } });
             return Ok(new BaseResponse<bool> { Data = true });

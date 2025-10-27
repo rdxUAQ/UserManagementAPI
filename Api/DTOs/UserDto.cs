@@ -21,10 +21,7 @@ namespace UserManagementAPI.Api.Models.Dtos
         [RegularExpression("^[A-Za-z0-9 ]+$")]
         public string? Fullname { get; set; }
 
-        // Capture any additional JSON properties sent by the client.
-        // Controller will reject requests that include unexpected properties.
-        [JsonExtensionData]
-        public Dictionary<string, JsonElement>? ExtensionData { get; set; }
+        
     }
     
         
