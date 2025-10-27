@@ -3,8 +3,7 @@ using UserManagementAPI.Api.Services;
 using UserManagementAPI.Api.Interfaces;
 using UserManagementAPI.Api.Middleware;
 using Serilog;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+using DotNetEnv;
 
 namespace UserManagementAPI
 {
@@ -12,7 +11,15 @@ namespace UserManagementAPI
     {
         public static void Main(string[] args)
         {
+
+            //load .env
+            Env.Load();
+
+            //build
             var builder = WebApplication.CreateBuilder(args);
+
+            //Add .env variables to configuration
+            builder.Configuration.AddEnvironmentVariables();
 
             //serilog
             //set serilog
@@ -56,6 +63,7 @@ namespace UserManagementAPI
             app.UseMiddleware<RequestCountMiddleware>();
             app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
             app.UseMiddleware<RequestResponseLoggingMiddleware>();
+            app.UseMiddleware<ApiKeyAuthenticationMiddleware>();
             
             //TODO: app swagger
 
